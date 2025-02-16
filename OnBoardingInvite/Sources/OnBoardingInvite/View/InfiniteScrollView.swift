@@ -2,6 +2,7 @@ import SwiftUI
 import UIKit
 
 struct InfiniteScrollView<Content: View>: View {
+    @Binding var sizeWidth: CGFloat
     @ViewBuilder var content: Content
     let spacing: CGFloat = 10
     @State private var contentSize: CGSize = .zero
@@ -19,6 +20,7 @@ struct InfiniteScrollView<Content: View>: View {
                         $0.size
                     } action: { newValue in
                         contentSize = .init(width: newValue.width + spacing, height: newValue.height)
+                        sizeWidth = contentSize.width / CGFloat(collection.count)
                     }
                     
                     HStack(spacing: spacing) {

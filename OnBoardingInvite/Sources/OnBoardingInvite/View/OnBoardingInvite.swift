@@ -8,13 +8,13 @@ public struct OnBoardingInviteView<Content, Content2> : View where Content : Vie
     var subview: Content2
     var spacing: CGFloat
     var relativeFrame: CGFloat
-    var cardWidth: CGFloat
     @State private var activeCard: Content
     @State private var scrollPosition: ScrollPosition = .init()
     @State private var currentScrollOffset: CGFloat = 0
     @State private var timer = Timer.publish(every: 0.01, on: .current, in: .default).autoconnect()
+    @State private var sizeWidth: CGFloat = 0
     
-    public init(cards: [Content], subview: Content2, spacing: CGFloat = 35, relativeFrame: CGFloat = 0.55, cardWidth: CGFloat = 0) {
+    public init(cards: [Content], subview: Content2, spacing: CGFloat = 35, relativeFrame: CGFloat = 0.55) {
         guard let first = cards.first else {
             fatalError("No cards")
         }
@@ -23,7 +23,6 @@ public struct OnBoardingInviteView<Content, Content2> : View where Content : Vie
         self.subview = subview
         self.spacing = spacing
         self.relativeFrame = relativeFrame
-        self.cardWidth = cardWidth
     }
 
     public var body: some View {
@@ -32,17 +31,14 @@ public struct OnBoardingInviteView<Content, Content2> : View where Content : Vie
                 .animation(.easeInOut(duration: 1))
             
             VStack(spacing: spacing) {
-                InfiniteScrollView {
+                InfiniteScrollView(sizeWidth: $sizeWidth) {
                     ForEach(cards) { card in
-                        GeometryReader { proxy in
-                            let _ = print("proxy.size: \(proxy.size)")
-                            card
-                                .scrollTransition(.interactive.threshold(.centered), axis: .horizontal) { content, phase in
-                                    content
-                                        .offset(y: phase == .identity ? -10 : 0)
-                                        .rotationEffect(.degrees(phase.value * 5), anchor: .bottom)
-                                }
-                        }
+                        card
+                            .scrollTransition(.interactive.threshold(.centered), axis: .horizontal) { content, phase in
+                                content
+                                    .offset(y: phase == .identity ? -10 : 0)
+                                    .rotationEffect(.degrees(phase.value * 5), anchor: .bottom)
+                            }
                     }
                 }
                 .scrollIndicators(.hidden)
@@ -55,11 +51,10 @@ public struct OnBoardingInviteView<Content, Content2> : View where Content : Vie
                     return retour
                 } action: { oldValue, newValue in
                     currentScrollOffset = newValue
-                    if cardWidth != 0 {
-                        let activeIndex = Int((currentScrollOffset / cardWidth).rounded()) % cards.count
+                    if sizeWidth != 0 {
+                        let activeIndex = Int((currentScrollOffset / sizeWidth).rounded()) % cards.count
                         if activeCard != cards[activeIndex] {
                             activeCard = cards[activeIndex]
-                            let _ = print("activeCard: \(activeCard)")
                         }
                     }
                 }
@@ -69,7 +64,7 @@ public struct OnBoardingInviteView<Content, Content2> : View where Content : Vie
             .safeAreaPadding(15)
         }
         .onReceive(timer) { _ in
-            currentScrollOffset += 0.3
+            currentScrollOffset += 0.2
             scrollPosition.scrollTo(x: currentScrollOffset)
         }
     }
