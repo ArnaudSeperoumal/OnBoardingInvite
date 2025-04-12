@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3889B5492DAB32F2001F7576 /* OnBoardingInvite in Frameworks */ = {isa = PBXBuildFile; productRef = 3889B5482DAB32F2001F7576 /* OnBoardingInvite */; };
 		38EFD4C02D5D23DE00E25797 /* OnBoardingInvite in Frameworks */ = {isa = PBXBuildFile; productRef = 38EFD4BF2D5D23DE00E25797 /* OnBoardingInvite */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3889B5492DAB32F2001F7576 /* OnBoardingInvite in Frameworks */,
 				38EFD4C02D5D23DE00E25797 /* OnBoardingInvite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,6 +120,7 @@
 			name = OnBoardingInviteDemo;
 			packageProductDependencies = (
 				38EFD4BF2D5D23DE00E25797 /* OnBoardingInvite */,
+				3889B5482DAB32F2001F7576 /* OnBoardingInvite */,
 			);
 			productName = OnBoardingInviteDemo;
 			productReference = 38EFD48B2D5D21D900E25797 /* OnBoardingInviteDemo.app */;
@@ -202,7 +205,7 @@
 			mainGroup = 38EFD4822D5D21D900E25797;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				38EFD4BE2D5D23DE00E25797 /* XCLocalSwiftPackageReference "../OnBoardingInvite" */,
+				3889B5472DAB32F2001F7576 /* XCLocalSwiftPackageReference "../../OnBoardingInvite" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 38EFD48C2D5D21D900E25797 /* Products */;
@@ -602,13 +605,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		38EFD4BE2D5D23DE00E25797 /* XCLocalSwiftPackageReference "../OnBoardingInvite" */ = {
+		3889B5472DAB32F2001F7576 /* XCLocalSwiftPackageReference "../../OnBoardingInvite" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = ../OnBoardingInvite;
+			relativePath = ../../OnBoardingInvite;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3889B5482DAB32F2001F7576 /* OnBoardingInvite */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OnBoardingInvite;
+		};
 		38EFD4BF2D5D23DE00E25797 /* OnBoardingInvite */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = OnBoardingInvite;
